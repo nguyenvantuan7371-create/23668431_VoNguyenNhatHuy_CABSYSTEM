@@ -78,11 +78,40 @@ quadrantChart
 
 3/ Business Rules - Quy tắc nghiệp vụ
 Customer Management
-ID	Business Rule	Nguồn yêu cầu
-BR01	Khách hàng phải có tài khoản hợp lệ để sử dụng dịch vụ đặt xe.	Quản lý tài khoản
-BR02	Khách hàng phải cung cấp điểm đón, điểm đến và loại xe khi đặt xe.	Đặt xe
-BR03	Khách hàng chỉ được theo dõi chuyến sau khi yêu cầu được xác nhận.	Theo dõi chuyến
-BR04	Khách hàng chỉ được đánh giá sau khi chuyến xe hoàn thành.	Đánh giá
+| ID       | Business Rule                                                      | Nguồn yêu cầu     |
+| -------- | ------------------------------------------------------------------ | ----------------- |
+| **BR01** | Khách hàng phải có tài khoản hợp lệ để sử dụng dịch vụ đặt xe.     | Quản lý tài khoản |
+| **BR02** | Khách hàng phải cung cấp điểm đón, điểm đến và loại xe khi đặt xe. | Đặt xe            |
+| **BR03** | Khách hàng chỉ được theo dõi chuyến sau khi yêu cầu được xác nhận. | Theo dõi chuyến   |
+| **BR04** | Khách hàng chỉ được đánh giá sau khi chuyến xe hoàn thành.         | Đánh giá          |
+
+Driver Management
+| ID       | Business Rule                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| **BR05** | Chỉ tài xế có trạng thái sẵn sàng mới được nhận chuyến.                                                      |
+| **BR06** | Hệ thống ưu tiên tài xế gần khách hàng và đang sẵn sàng.                                                     |
+| **BR07** | Tài xế phải phản hồi yêu cầu chuyến trong thời gian quy định.                                                |
+| **BR08** | Nếu tài xế từ chối chuyến, hệ thống phải tìm tài xế phù hợp tiếp theo.                                       |
+| **BR09** | Nếu tài xế không phản hồi trong thời gian quy định, hệ thống phải coi yêu cầu là timeout và tìm tài xế khác. |
+| **BR10** | Chuyến xe chỉ được xác nhận khi tài xế chấp nhận yêu cầu.                                                    |
+
+Booking Management
+| ID       | Business Rule                                                                      |
+| -------- | ---------------------------------------------------------------------------------- |
+| **BR11** | Mỗi yêu cầu đặt xe phải xác định được khách hàng, điểm đón, điểm đến và loại xe.   |
+| **BR12** | Một yêu cầu đặt xe chỉ được chuyển thành chuyến khi có tài xế chấp nhận.           |
+| **BR13** | Nếu không có tài xế phù hợp, hệ thống phải thông báo cho khách hàng.               |
+| **BR14** | Hệ thống phải duy trì trạng thái của yêu cầu/chuyến xe trong suốt quá trình xử lý. |
+
+Payment Management
+| ID       | Business Rule                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| **BR15** | Hệ thống phải hỗ trợ thanh toán bằng tiền mặt và thanh toán điện tử.                                         |
+| **BR16** | Thanh toán điện tử phải được thực hiện thông qua nhà cung cấp thanh toán bên ngoài.                          |
+| **BR17** | Hệ thống không được lưu thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán.                                |
+| **BR18** | Khi thanh toán thất bại, hệ thống phải ghi nhận trạng thái thất bại và thực hiện chính sách xử lý tương ứng. |
+
+
 
 
 
