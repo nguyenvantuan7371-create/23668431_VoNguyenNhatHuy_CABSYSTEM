@@ -1,3 +1,4 @@
+1/
 # Software Requirement Specification (SRS)
 ## CAB System – Nền tảng đặt xe
 
@@ -48,7 +49,7 @@ Hệ thống phục vụ ba nhóm người dùng chính:
 
 
 
-Stakeholder Matrix:
+2/ Stakeholder Matrix:
 ```mermaid
 quadrantChart
     title CAB System - Stakeholder Matrix
@@ -70,6 +71,22 @@ quadrantChart
     Driver: [0.85, 0.32]
     QA Tester: [0.68, 0.42]
     External Partner: [0.28, 0.30]
+
+
+
+
+
+3/ Business Rules - Quy tắc nghiệp vụ
+Customer Management
+ID	Business Rule	Nguồn yêu cầu
+BR01	Khách hàng phải có tài khoản hợp lệ để sử dụng dịch vụ đặt xe.	Quản lý tài khoản
+BR02	Khách hàng phải cung cấp điểm đón, điểm đến và loại xe khi đặt xe.	Đặt xe
+BR03	Khách hàng chỉ được theo dõi chuyến sau khi yêu cầu được xác nhận.	Theo dõi chuyến
+BR04	Khách hàng chỉ được đánh giá sau khi chuyến xe hoàn thành.	Đánh giá
+
+
+
+
 
 
 
