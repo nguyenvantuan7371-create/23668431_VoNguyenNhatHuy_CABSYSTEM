@@ -49,7 +49,7 @@ Hệ thống phục vụ ba nhóm người dùng chính:
 
 
 
-2/ Stakeholder Matrix:
+2. Stakeholder Matrix:
 ```mermaid
 quadrantChart
     title CAB System - Stakeholder Matrix
@@ -76,7 +76,7 @@ quadrantChart
 
 
 
-3/ Business Rules - Quy tắc nghiệp vụ
+3. Business Rules - Quy tắc nghiệp vụ
 
 Customer Management
 | ID       | Business Rule                                                      | Nguồn yêu cầu     |
@@ -111,6 +111,223 @@ Payment Management
 | **BR16** | Thanh toán điện tử phải được thực hiện thông qua nhà cung cấp thanh toán bên ngoài.                          |
 | **BR17** | Hệ thống không được lưu thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán.                                |
 | **BR18** | Khi thanh toán thất bại, hệ thống phải ghi nhận trạng thái thất bại và thực hiện chính sách xử lý tương ứng. |
+
+
+4. Module
+CAB SYSTEM
+│
+├── 1. Customer Management
+│   ├── Registration / Login
+│   ├── Profile Management
+│   ├── Booking
+│   ├── Trip Tracking
+│   └── Rating
+│
+├── 2. Driver Management
+│   ├── Driver Profile
+│   ├── Vehicle Management
+│   ├── Driver Availability
+│   ├── Driver Location
+│   ├── Ride Acceptance
+│   └── Trip Progress
+│
+├── 3. Booking & Dispatch Management
+│   ├── Create Booking
+│   ├── Find Driver
+│   ├── Driver Assignment
+│   ├── Reassignment
+│   └── Booking Status
+│
+├── 4. Payment Management
+│   ├── Fare Calculation
+│   ├── Cash Payment
+│   ├── Electronic Payment
+│   └── Payment Failure
+│
+└── 5. Operation & Administration
+    ├── Customer Management
+    ├── Driver Management
+    ├── Vehicle Management
+    ├── Trip Management
+    ├── Incident Management
+    ├── Permission Management
+    └── Reporting
+
+
+5. Thiết kế Business Requirement
+BR01 – Customer Registration & Account
+
+Module: Customer Management
+
+Business Objective:
+Cho phép khách hàng tạo và sử dụng tài khoản để sử dụng dịch vụ CAB.
+
+Actor: Customer
+
+Business Requirement:
+Hệ thống phải cho phép khách hàng đăng ký, đăng nhập và cập nhật thông tin tài khoản.
+
+Business Rules:
+
+Khách hàng phải có tài khoản hợp lệ để đặt xe.
+Tài khoản không hoạt động không được phép tạo yêu cầu đặt xe.
+
+Customer
+   ↓
+Register
+   ↓
+Provide Information
+   ↓
+System validates information
+   ↓
+Create Account
+   ↓
+Login
+   ↓
+Account Active
+
+
+
+
+
+BR02 – Create Booking
+
+Module: Customer Management / Booking Management
+
+Business Objective:
+Cho phép khách hàng tạo yêu cầu đặt xe.
+
+Actor: Customer
+
+Business Requirement:
+Hệ thống phải cho phép khách hàng nhập điểm đón, điểm đến và loại xe để gửi yêu cầu đặt xe.
+
+Business Rules:
+
+Khách hàng phải đăng nhập.
+Điểm đón phải được xác định.
+Điểm đến phải được xác định.
+Loại xe phải được lựa chọn.
+
+Customer
+   ↓
+Enter Pickup
+   ↓
+Enter Destination
+   ↓
+Select Vehicle Type
+   ↓
+Submit Booking
+   ↓
+System creates Booking
+
+
+
+BR03 – Driver Assignment
+
+Module: Driver Management / Booking & Dispatch
+
+Business Objective:
+Tự động tìm và phân công tài xế phù hợp.
+
+Actor: System
+
+Business Requirement:
+Hệ thống phải tìm tài xế dựa trên vị trí và trạng thái sẵn sàng.
+
+Business Rules:
+
+Chỉ tài xế Available mới được lựa chọn.
+Ưu tiên tài xế gần khách hàng.
+Tài xế phải phản hồi trong thời gian quy định.
+Từ chối → tìm tài xế khác.
+Timeout → tìm tài xế khác.
+
+Booking Created
+      ↓
+Find Available Drivers
+      ↓
+Calculate / Compare Distance
+      ↓
+Select Nearest Driver
+      ↓
+Send Ride Request
+      ↓
+ ┌────┴─────────────┐
+ ↓                  ↓
+Accept          Reject / Timeout
+ ↓                  ↓
+Confirm Trip    Find Next Driver
+
+
+
+
+BR04 – Trip Management
+
+Module: Booking & Dispatch / Driver Management
+
+Business Objective:
+Quản lý toàn bộ vòng đời của chuyến xe.
+
+Business Requirement:
+Hệ thống phải cho phép tài xế cập nhật tiến trình chuyến và cho phép khách hàng theo dõi trạng thái.
+
+Flow:
+Assigned
+   ↓
+Driver Arriving
+   ↓
+Driver Arrived
+   ↓
+Trip Started
+   ↓
+Trip In Progress
+   ↓
+Trip Completed
+
+
+
+BR05 – Payment Management
+
+Module: Payment Management
+
+Business Objective:
+Cho phép khách hàng thanh toán chi phí chuyến xe.
+
+Business Requirement:
+Hệ thống phải hỗ trợ thanh toán tiền mặt và thanh toán điện tử thông qua nhà cung cấp bên ngoài.
+
+Business Rules:
+
+Không lưu dữ liệu nhạy cảm của thẻ/tài khoản.
+Payment Provider xử lý thanh toán điện tử.
+Hệ thống phải nhận kết quả thanh toán.
+Thanh toán thất bại phải được ghi nhận.
+
+
+
+Trip Completed
+      ↓
+Calculate Final Fare
+      ↓
+Select Payment Method
+      ↓
+ ┌────┴──────────┐
+ ↓               ↓
+Cash       Electronic Payment
+ ↓               ↓
+Record       Payment Provider
+Payment          ↓
+             Payment Result
+                  ↓
+           Success / Failed
+
+
+
+
+
+
+
 
 
 
