@@ -49,6 +49,7 @@ Hệ thống phục vụ ba nhóm người dùng chính:
 
 
 
+```mermaid
 quadrantChart
     title CAB System - Stakeholder Matrix
     x-axis Low Interest --> High Interest
