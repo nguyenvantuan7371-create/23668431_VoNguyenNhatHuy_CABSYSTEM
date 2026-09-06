@@ -328,6 +328,49 @@ Payment          ↓
 
 
 
+BR06 – Trip Rating
+
+Module: Customer Management
+
+Business Objective:
+Thu thập đánh giá chất lượng dịch vụ.
+
+Business Requirement:
+Khách hàng được phép đánh giá chuyến xe sau khi chuyến hoàn thành.
+Business Rule:
+
+Trip Completed
+      ↓
+Customer can Rate
+      ↓
+Submit Rating
+      ↓
+Store Rating
+
+
+
+
+
+BR07 – Operation Management
+
+Module: Operation & Administration
+
+Business Objective:
+Cho phép nhân viên vận hành quản lý và giám sát hệ thống.
+
+Business Requirement:
+Nhân viên vận hành phải có khả năng quản lý khách hàng, tài xế, phương tiện, chuyến đi, sự cố và báo cáo.
+
+Business Rules:
+
+Nhân viên chỉ được thực hiện chức năng theo quyền được cấp.
+Các thao tác quản trị quan trọng phải được lưu vết.
+Báo cáo phải phản ánh dữ liệu hoạt động của hệ thống.
+
+
+
+
+
 
 
 
