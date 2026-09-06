@@ -48,7 +48,7 @@ Hệ thống phục vụ ba nhóm người dùng chính:
 
 
 
-
+Stakeholder Matrix:
 ```mermaid
 quadrantChart
     title CAB System - Stakeholder Matrix
