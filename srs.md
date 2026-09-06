@@ -76,7 +76,6 @@ quadrantChart
 
 
 
-
 3/ Business Rules - Quy tắc nghiệp vụ
 Customer Management
 ID	Business Rule	Nguồn yêu cầu
