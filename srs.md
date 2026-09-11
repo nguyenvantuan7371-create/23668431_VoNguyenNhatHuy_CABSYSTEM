@@ -601,9 +601,70 @@ Module Operation & Administration
 
 
 ## Mô hình ERD
-```
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8d4975f0-09c1-45b9-b659-e97a9da6c94d" />
-```
+
+```mermaid
+erDiagram
+
+    CUSTOMER ||--o{ TRIP_BOOKING : "thực hiện"
+    DRIVER ||--o{ TRIP_BOOKING : "thực hiện"
+    DRIVER ||--|| VEHICLE : "sở hữu"
+    TRIP_BOOKING ||--|| PAYMENT : "có"
+    TRIP_BOOKING ||--|| RATING : "được đánh giá"
+
+    CUSTOMER {
+        int CustomerID PK
+        string FullName
+        string PhoneNumber
+        string Email
+        string PasswordHash
+        string Status
+    }
+
+    DRIVER {
+        int DriverID PK
+        string FullName
+        string PhoneNumber
+        string Email
+        string PasswordHash
+        string AvailabilityStatus
+        string CurrentLocation
+    }
+
+    VEHICLE {
+        int VehicleID PK
+        int DriverID FK
+        string LicensePlate
+        string VehicleType
+        string Color
+    }
+
+    TRIP_BOOKING {
+        int TripID PK
+        int CustomerID FK
+        int DriverID FK
+        string PickupLocation
+        string DropoffLocation
+        string VehicleType
+        string Status
+        decimal Fare
+        decimal Distance
+    }
+
+    PAYMENT {
+        int PaymentID PK
+        int TripID FK
+        string Method
+        decimal Amount
+        string Status
+    }
+
+    RATING {
+        int RatingID PK
+        int TripID FK
+        int Score
+        string Comment
+    }
+
 
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
 
