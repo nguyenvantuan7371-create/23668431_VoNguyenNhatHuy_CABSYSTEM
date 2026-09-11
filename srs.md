@@ -323,195 +323,72 @@ Báo cáo phải phản ánh dữ liệu hoạt động của hệ thống.
 
 
 ## 6. Chức năng nghiệp vụ — FR
-Module Customer Management
-Quy trình nghiệp vụ
-```
-Khách hàng
-    ↓
-Đăng ký / Đăng nhập
-    ↓
-Quản lý thông tin cá nhân
-    ↓
-Đặt xe
-    ↓
-Theo dõi chuyến
-    ↓
-Thanh toán
-    ↓
-Đánh giá
-```
 
 
+### Module 1: Customer Management (Quản lý Khách hàng - MVP)
+*Bao gồm các chức năng: Tài khoản khách hàng, Đặt xe (Booking), Theo dõi chuyến, Thanh toán (Payment) và Hệ thống điều phối (Dispatch).*
 
-Functional Requirements
-| ID       | Functional Requirement | Mô tả                                         |
-| -------- | ---------------------- | --------------------------------------------- |
-| **FR01** | Đăng ký tài khoản      | Hệ thống cho phép khách hàng tạo tài khoản    |
-| **FR02** | Đăng nhập              | Hệ thống xác thực khách hàng                  |
-| **FR03** | Cập nhật thông tin     | Khách hàng có thể cập nhật thông tin cá nhân  |
-| **FR04** | Tạo yêu cầu đặt xe     | Khách hàng nhập điểm đón, điểm đến, loại xe   |
-| **FR05** | Theo dõi chuyến        | Khách hàng xem trạng thái và thông tin tài xế |
-| **FR06** | Thanh toán chuyến      | Khách hàng thực hiện thanh toán               |
-| **FR07** | Đánh giá chuyến        | Khách hàng đánh giá sau khi chuyến hoàn thành |
+**Quy trình nghiệp vụ:**
+Đăng ký / Đăng nhập → Quản lý thông tin cá nhân → Đặt xe (Hệ thống tìm và phân công tài xế) → Theo dõi chuyến → Thanh toán → Đánh giá.
 
-
-
-Module Driver Management
-Quy trình nghiệp vụ
-```
-Tài xế
-  ↓
-Đăng nhập
-  ↓
-Quản lý hồ sơ
-  ↓
-Quản lý phương tiện
-  ↓
-Cập nhật trạng thái
-  ↓
-Nhận yêu cầu chuyến
-  ↓
-Chấp nhận / Từ chối
-  ↓
-Cập nhật tiến trình chuyến
-```
-
-Functional Requirements
-| ID       | Functional Requirement | Mô tả                                       |
-| -------- | ---------------------- | ------------------------------------------- |
-| **FR08** | Đăng nhập tài xế       | Tài xế đăng nhập vào hệ thống               |
-| **FR09** | Quản lý hồ sơ tài xế   | Cập nhật thông tin cá nhân/hồ sơ            |
-| **FR10** | Quản lý phương tiện    | Quản lý thông tin phương tiện               |
-| **FR11** | Cập nhật trạng thái    | Chuyển trạng thái Available/Unavailable     |
-| **FR12** | Nhận yêu cầu chuyến    | Tài xế nhận thông tin chuyến được phân công |
-| **FR13** | Chấp nhận chuyến       | Tài xế chấp nhận yêu cầu                    |
-| **FR14** | Từ chối chuyến         | Tài xế từ chối yêu cầu                      |
-| **FR15** | Cập nhật tiến trình    | Tài xế cập nhật trạng thái chuyến           |
+**Danh sách chức năng (Functional Requirements):**
+| ID       | Nhóm chức năng     | Functional Requirement           | Mô tả                                                                 |
+| -------- | ------------------ | -------------------------------- | --------------------------------------------------------------------- |
+| **FR01** | Tài khoản          | Đăng ký tài khoản                | Hệ thống cho phép khách hàng tạo tài khoản.                           |
+| **FR02** | Tài khoản          | Đăng nhập                        | Hệ thống xác thực khách hàng.                                         |
+| **FR03** | Tài khoản          | Cập nhật thông tin               | Khách hàng có thể cập nhật thông tin cá nhân.                         |
+| **FR04** | Đặt xe (Booking)   | Tạo yêu cầu đặt xe               | Khách hàng nhập điểm đón, điểm đến, loại xe.                          |
+| **FR17** | Hệ thống điều phối | Tìm tài xế                       | Hệ thống quét tìm tài xế dựa trên vị trí và trạng thái sẵn sàng.      |
+| **FR18** | Hệ thống điều phối | Xếp hạng tài xế                  | Ưu tiên tài xế phù hợp và gần nhất.                                   |
+| **FR21** | Hệ thống điều phối | Xử lý tài xế từ chối             | Tự động tìm tài xế khác nếu tài xế trước đó từ chối.                  |
+| **FR22** | Hệ thống điều phối | Xử lý timeout                    | Tự động tìm tài xế khác nếu tài xế trước đó không phản hồi.           |
+| **FR23** | Hệ thống điều phối | Xử lý không có tài xế            | Thông báo cho khách hàng nếu không tìm được tài xế.                   |
+| **FR05** | Theo dõi chuyến    | Theo dõi tiến trình              | Khách hàng xem trạng thái chuyến và vị trí tài xế.                    |
+| **FR28** | Theo dõi chuyến    | Hiển thị thông tin tài xế        | Khách hàng xem được biển số, tên, loại xe của tài xế đã nhận.         |
+| **FR30** | Thanh toán         | Tính cước chuyến                 | Hệ thống tính toán số tiền khách phải trả sau chuyến.                 |
+| **FR31** | Thanh toán         | Thanh toán tiền mặt              | Khách hàng chọn thanh toán trực tiếp cho tài xế.                      |
+| **FR32** | Thanh toán         | Thanh toán điện tử               | Khách hàng thanh toán qua cổng thanh toán tích hợp.                   |
+| **FR33** | Thanh toán         | Tích hợp Payment Provider        | Chuyển hướng giao dịch an toàn không lưu thẻ nội bộ.                  |
+| **FR34** | Thanh toán         | Ghi nhận kết quả thanh toán      | Hệ thống cập nhật trạng thái thanh toán (Thành công).                 |
+| **FR35** | Thanh toán         | Xử lý thanh toán thất bại        | Thông báo lỗi và cho phép khách hàng thực hiện lại.                   |
+| **FR07** | Đánh giá           | Đánh giá chuyến                  | Khách hàng chấm điểm và nhận xét sau khi hoàn thành chuyến.           |
+| **FR36** | Thông báo          | Thông báo KH                     | Gửi thông báo đặt xe, phân công, trạng thái chuyến, thanh toán.       |
 
 
+### Module 2: Driver Management (Quản lý Tài xế - MVP)
+*Bao gồm các chức năng: Tài khoản & Hồ sơ tài xế, Nhận/Từ chối chuyến, và Cập nhật hành trình (Trip Management).*
 
-Module Booking & Dispatch
-Quy trình
-```
-Booking Request
-      ↓
-Tìm tài xế phù hợp
-      ↓
-Ưu tiên tài xế
-      ↓
-Gửi yêu cầu
-      ↓
-┌───────────────┐
-│               │
-Accept       Reject / Timeout
-│               │
-↓               ↓
-Xác nhận      Tìm tài xế khác
-chuyến            │
-                  └──→ Gửi yêu cầu lại
-```
+**Quy trình nghiệp vụ:**
+Đăng nhập → Quản lý hồ sơ/phương tiện → Cập nhật trạng thái sẵn sàng → Nhận thông báo yêu cầu chuyến → Chấp nhận / Từ chối → Cập nhật tiến trình chuyến → Hoàn thành.
 
+**Danh sách chức năng (Functional Requirements):**
+| ID       | Nhóm chức năng     | Functional Requirement           | Mô tả                                                                 |
+| -------- | ------------------ | -------------------------------- | --------------------------------------------------------------------- |
+| **FR08** | Tài khoản & Hồ sơ  | Đăng nhập tài xế                 | Tài xế đăng nhập vào hệ thống.                                        |
+| **FR09** | Tài khoản & Hồ sơ  | Quản lý hồ sơ tài xế             | Cập nhật thông tin cá nhân/bằng lái.                                  |
+| **FR10** | Tài khoản & Hồ sơ  | Quản lý phương tiện              | Cập nhật thông tin xe, biển số, màu xe.                               |
+| **FR11** | Nhận chuyến        | Cập nhật trạng thái làm việc     | Chuyển đổi trạng thái Available (Sẵn sàng) / Unavailable (Bận).       |
+| **FR12** | Nhận chuyến        | Nhận yêu cầu chuyến              | Hiển thị pop-up thông báo thông tin chuyến được phân công.            |
+| **FR13** | Nhận chuyến        | Chấp nhận chuyến                 | Tài xế bấm nhận yêu cầu (Chuyển thành chuyến đi chính thức).          |
+| **FR14** | Nhận chuyến        | Từ chối chuyến                   | Tài xế từ chối yêu cầu (Hệ thống chuyển cho người khác).              |
+| **FR24** | Quản lý hành trình | Tạo chuyến & Gán tài xế          | Chốt chuyến đi vào DB khi tài xế nhấn chấp nhận.                      |
+| **FR26** | Quản lý hành trình | Cập nhật tiến trình chuyến       | Thao tác chuyển trạng thái: Đã đến điểm đón -> Đã đón -> Đang di chuyển.|
+| **FR29** | Quản lý hành trình | Ghi nhận hoàn thành              | Thao tác kết thúc chuyến (Kích hoạt luồng tính tiền cho khách).       |
+| **FR37** | Thông báo          | Thông báo TX                     | Nhận push notification về chuyến mới hoặc thay đổi từ khách hàng.     |
 
 
-Functional Requirements
-| ID       | Functional Requirement | Mô tả                                    |
-| -------- | ---------------------- | ---------------------------------------- |
-| **FR16** | Tạo Booking            | Tạo yêu cầu đặt xe                       |
-| **FR17** | Tìm tài xế             | Tìm tài xế dựa trên vị trí và trạng thái |
-| **FR18** | Xếp hạng tài xế        | Ưu tiên tài xế phù hợp                   |
-| **FR19** | Gửi yêu cầu chuyến     | Gửi request tới tài xế                   |
-| **FR20** | Xử lý tài xế chấp nhận | Xác nhận chuyến khi tài xế nhận          |
-| **FR21** | Xử lý tài xế từ chối   | Tìm tài xế khác                          |
-| **FR22** | Xử lý timeout          | Tìm tài xế khác nếu không phản hồi       |
-| **FR23** | Xử lý không có tài xế  | Thông báo khách hàng                     |
+### Module 3: Operation & Administration (Giai đoạn 2 - Ngoài phạm vi MVP)
+*Lưu ý: Các chức năng dưới đây thuộc giai đoạn mở rộng sau 7 tuần triển khai MVP đầu tiên nhằm tập trung nguồn lực xây dựng cốt lõi đặt xe.*
 
-
-
-Module Trip Management
-Quy trình
-```
-Trip Created
-     ↓
-Driver Assigned
-     ↓
-Driver Arriving
-     ↓
-Driver Arrived
-     ↓
-Trip In Progress
-     ↓
-Trip Completed
-```
-
-Functional Requirements
-| ID       | Functional Requirement                    |
-| -------- | ----------------------------------------- |
-| **FR24** | Tạo chuyến                                |
-| **FR25** | Gán tài xế cho chuyến                     |
-| **FR26** | Cập nhật trạng thái chuyến                |
-| **FR27** | Hiển thị trạng thái chuyến cho khách hàng |
-| **FR28** | Hiển thị thông tin tài xế                 |
-| **FR29** | Ghi nhận hoàn thành chuyến                |
-
-
-
-
-Module Payment Management
-Quy trình
-```
-Trip Completed
-      ↓
-Tính cước
-      ↓
-Chọn phương thức thanh toán
-      ↓
-┌──────────────┴──────────────┐
-│                             │
-Tiền mặt                 Điện tử
-│                             │
-↓                             ↓
-Ghi nhận              Payment Provider
-                              ↓
-                       Thành công / Thất bại
-```
-
-
-Functional Requirements
-| ID       | Functional Requirement      |
-| -------- | --------------------------- |
-| **FR30** | Tính cước chuyến            |
-| **FR31** | Thanh toán tiền mặt         |
-| **FR32** | Thanh toán điện tử          |
-| **FR33** | Tích hợp Payment Provider   |
-| **FR34** | Ghi nhận kết quả thanh toán |
-| **FR35** | Xử lý thanh toán thất bại   |
-
-
-
-Module Notification
-| ID       | Functional Requirement          |
-| -------- | ------------------------------- |
-| **FR36** | Gửi thông báo đặt xe            |
-| **FR37** | Gửi thông báo phân công tài xế  |
-| **FR38** | Gửi thông báo trạng thái chuyến |
-| **FR39** | Gửi thông báo thanh toán        |
-
-
-
-
-Module Operation & Administration
-| ID       | Functional Requirement |
-| -------- | ---------------------- |
-| **FR40** | Quản lý khách hàng     |
-| **FR41** | Quản lý tài xế         |
-| **FR42** | Quản lý phương tiện    |
-| **FR43** | Quản lý chuyến đi      |
-| **FR44** | Xử lý sự cố            |
-| **FR45** | Quản lý phân quyền     |
-| **FR46** | Xem báo cáo hoạt động  |
-
-
-
+| ID       | Functional Requirement      | Ghi chú triển khai                                              |
+| -------- | --------------------------- | --------------------------------------------------------------- |
+| **FR40** | Quản lý khách hàng          | Dời sang Phase 2. Admin thao tác trực tiếp trên DB giai đoạn 1. |
+| **FR41** | Quản lý tài xế              | Dời sang Phase 2. Admin thao tác trực tiếp trên DB giai đoạn 1. |
+| **FR42** | Quản lý phương tiện         | Dời sang Phase 2.                                               |
+| **FR43** | Quản lý chuyến đi           | Dời sang Phase 2.                                               |
+| **FR44** | Xử lý sự cố                 | Hỗ trợ thủ công qua Hotline trong giai đoạn MVP.                |
+| **FR45** | Quản lý phân quyền          | Dời sang Phase 2.                                               |
+| **FR46** | Xem báo cáo hoạt động       | Xuất log hệ thống/truy vấn DB bằng công cụ ngoài trong MVP.     |
 
 ## 7. Yêu cầu phi chức năng (Non-Functional Requirements - NFR)
 ## Non-Functional Requirements (NFR)
