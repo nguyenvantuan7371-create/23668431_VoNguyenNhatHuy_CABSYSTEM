@@ -86,42 +86,23 @@ Payment Management
 
 ```
 │
-├── 1. Customer Management
+├── 1. Customer Management (MVP)
 │   ├── 🔑 Registration / Login
 │   ├── 👤 Profile Management
-│   ├── 📅 Booking
+│   ├── 📅 Booking (Bao gồm tạo chuyến & tìm tài xế)
 │   ├── 📍 Trip Tracking
+│   ├── 💳 Payment (Bao gồm tính cước & thanh toán)
 │   └── ⭐ Rating
 │
-├── 2. Driver Management
-│   ├── 👤 Driver Profile
-│   ├── 🚗 Vehicle Management
-│   ├── ⏲️ Driver Availability
-│   ├── 📍 Driver Location
-│   ├── ✅ Ride Acceptance
-│   └── 🚦 Trip Progress
+├── 2. Driver Management (MVP)
+│   ├── 🔑 Driver Login 
+│   ├── 👤 Driver Profile & Vehicle Management
+│   ├── ⏲️ Availability Status
+│   ├── ✅ Ride Acceptance (Nhận/Từ chối chuyến)
+│   └── 🚦 Trip Progress (Cập nhật hành trình)
 │
-├── 3. Booking & Dispatch Management
-│   ├── ➕ Create Booking
-│   ├── 🔍 Find Driver
-│   ├── 📤 Driver Assignment
-│   ├── 🔄 Reassignment
-│   └── 📊 Booking Status
-│
-├── 4. Payment Management
-│   ├── 🧮 Fare Calculation
-│   ├── 💵 Cash Payment
-│   ├── 💳 Electronic Payment
-│   └── ❌ Payment Failure
-│
-└── 5. Operation & Administration
-├── 👥 Customer Management
-├── 👤 Driver Management
-├── 🚗 Vehicle Management
-├── 🗺️ Trip Management
-├── ⚠️ Incident Management
-├── 🔒 Permission Management
-└── 📑 Reporting
+└── 3. Operation & Administration (Phase 2 - Out of MVP scope)
+    └── ⚠️ Tạm hoãn triển khai trong giai đoạn MVP 7 tuần.
 ```
 
 ## 5. Thiết kế Business Requirement
