@@ -546,7 +546,28 @@ Module Operation & Administration
   
 ## 8. Mô hình thực thể kết hợp (ERD Entities - Mức khái quát)
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
+    Usecase Nhóm Khách hàng (Customer):
+UC01: Đăng ký / Đăng nhập hệ thống.
+UC02: Tạo yêu cầu đặt xe (Nhập điểm đón, đến, loại xe).
+UC03: Theo dõi trạng thái chuyến đi & Vị trí tài xế.
+UC04: Thanh toán chuyến đi (Tiền mặt / Điện tử).
+UC05: Đánh giá dịch vụ.
+    Usecase Nhóm Tài xế (Driver):
+UC06: Cập nhật trạng thái hoạt động (Sẵn sàng / Bận).
+UC07: Xử lý yêu cầu chuyến (Chấp nhận / Từ chối).
+UC08: Cập nhật tiến trình chuyến đi (Đến điểm đón, Đã đón khách, Đang di chuyển, Hoàn thành).  
 ## 10. Tiêu chí chấp nhận (Acceptance Criteria - AC)
 ## 11. Bảng truy vết (Traceability Matrix)
+
+
+| ID Yêu cầu nghiệp vụ (BR)     | ID Yêu cầu chức năng (FR)                | ID Use Case (UC) | Đối tượng tương tác (Actor)  |
+| ----------------------------- | ---------------------------------------- | ---------------- | ---------------------------- |
+| **BR01 - Customer Account**   | FR01, FR02, FR03                         | UC01             | Khách hàng                   |
+| **BR02 - Create Booking**     | FR04, FR16                               | UC02             | Khách hàng                   |
+| **BR03 - Driver Assignment**  | FR17, FR18, FR19, FR21, FR22, FR23       | UC08, UC10       | Tài xế, Hệ thống             |
+| **BR04 - Trip Management**    | FR05, FR15, FR24, FR26, FR27, FR28, FR29 | UC03, UC09       | Khách hàng, Tài xế           |
+| **BR05 - Payment Management** | FR30, FR31, FR32, FR33, FR34, FR35       | UC04             | Khách hàng, Payment Provider |
+| **BR06 - Trip Rating**        | FR07                                     | UC05             | Khách hàng                   |
+| **BR07 - Notification**       | FR36, FR37, FR38, FR39                   | Gắn kèm các UC   | Khách hàng, Tài xế, Hệ thống |
 
    
