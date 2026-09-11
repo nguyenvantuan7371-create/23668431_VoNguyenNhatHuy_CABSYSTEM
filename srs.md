@@ -114,9 +114,11 @@ Payment Management
 
 
 4. Module
-CAB SYSTEM
 
 
+# Module CAB SYSTEM
+
+Module CAB SYSTEM
 │
 ├── 1. Customer Management
 │   ├── 🔑 Registration / Login
@@ -147,14 +149,13 @@ CAB SYSTEM
 │   └── ❌ Payment Failure
 │
 └── 5. Operation & Administration
-    ├── 👥 Customer Management
-    ├── 👤 Driver Management
-    ├── 🚗 Vehicle Management
-    ├── 🗺️ Trip Management
-    ├── ⚠️ Incident Management
-    ├── 🔒 Permission Management
-    └── 📑 Reporting
-
+├── 👥 Customer Management
+├── 👤 Driver Management
+├── 🚗 Vehicle Management
+├── 🗺️ Trip Management
+├── ⚠️ Incident Management
+├── 🔒 Permission Management
+└── 📑 Reporting
 
 
 5. Thiết kế Business Requirement
