@@ -3,7 +3,7 @@
 ## CAB System – Nền tảng đặt xe
 
 
-## 1. Stakeholder Analysis
+## 1. Xác định Stakeholder
 ```
 | Stakeholder                     | Role                    | Responsibilities & Concerns                                                                                                                  |
 | ------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -532,6 +532,21 @@ Module Operation & Administration
 
 
 
-7. Quy tắc nghiệp vụ
-8. 
+## 7. Yêu cầu phi chức năng (Non-Functional Requirements - NFR)
+## Non-Functional Requirements (NFR)
+
+| ID        | Danh mục                               | Yêu cầu phi chức năng (NFR)                                                                                                                                                      |
+| --------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NFR01** | **Hiệu năng (Performance)**            | Hệ thống phải hoạt động ổn định vào các thời điểm nhu cầu đặt xe tăng cao.                                                                                                       |
+| **NFR02** | **Khả năng mở rộng (Scalability)**     | Các thành phần của hệ thống (thanh toán, thông báo,...) cần có khả năng mở rộng độc lập khi tải tăng mà không làm ngừng toàn bộ hệ thống.                                        |
+| **NFR03** | **Khả năng bảo trì (Maintainability)** | Kiến trúc phải linh hoạt để dễ dàng bổ sung dịch vụ mới, thêm phương thức thanh toán hoặc nhà cung cấp thông báo trong tương lai. Các chức năng mới có thể triển khai từng phần. |
+| **NFR04** | **Bảo mật (Security)**                 | Khách hàng và tài xế phải được xác thực trước khi sử dụng các chức năng yêu cầu tài khoản.                                                                                       |
+| **NFR05** | **Bảo mật dữ liệu (Data Privacy)**     | Không lưu trữ trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán trong hệ thống CAB.                                                                                 |
+| **NFR06** | **Kiểm toán (Audit)**                  | Hệ thống phải lưu vết các thao tác quản trị quan trọng để phục vụ kiểm tra khi có sự cố.                                                                                         |
+  
+## 8. Mô hình thực thể kết hợp (ERD Entities - Mức khái quát)
+## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
+## 10. Tiêu chí chấp nhận (Acceptance Criteria - AC)
+## 11. Bảng truy vết (Traceability Matrix)
+
    
