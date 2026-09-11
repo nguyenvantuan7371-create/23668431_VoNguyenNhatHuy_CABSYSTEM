@@ -173,7 +173,7 @@ Business Rules:
 
 Khách hàng phải có tài khoản hợp lệ để đặt xe.
 Tài khoản không hoạt động không được phép tạo yêu cầu đặt xe.
-
+```
 Customer
    ↓
 Register
@@ -187,7 +187,7 @@ Create Account
 Login
    ↓
 Account Active
-
+```
 
 
 
@@ -210,7 +210,7 @@ Khách hàng phải đăng nhập.
 Điểm đón phải được xác định.
 Điểm đến phải được xác định.
 Loại xe phải được lựa chọn.
-
+```
 Customer
    ↓
 Enter Pickup
@@ -222,7 +222,7 @@ Select Vehicle Type
 Submit Booking
    ↓
 System creates Booking
-
+```
 
 
 BR03 – Driver Assignment
@@ -244,7 +244,7 @@ Chỉ tài xế Available mới được lựa chọn.
 Tài xế phải phản hồi trong thời gian quy định.
 Từ chối → tìm tài xế khác.
 Timeout → tìm tài xế khác.
-
+```
 Booking Created
       ↓
 Find Available Drivers
@@ -260,7 +260,7 @@ Send Ride Request
 Accept          Reject / Timeout
  ↓                  ↓
 Confirm Trip    Find Next Driver
-
+```
 
 
 
@@ -275,6 +275,7 @@ Business Requirement:
 Hệ thống phải cho phép tài xế cập nhật tiến trình chuyến và cho phép khách hàng theo dõi trạng thái.
 
 Flow:
+```
 Assigned
    ↓
 Driver Arriving
@@ -286,7 +287,7 @@ Trip Started
 Trip In Progress
    ↓
 Trip Completed
-
+```
 
 
 BR05 – Payment Management
@@ -307,7 +308,7 @@ Hệ thống phải nhận kết quả thanh toán.
 Thanh toán thất bại phải được ghi nhận.
 
 
-
+```
 Trip Completed
       ↓
 Calculate Final Fare
@@ -323,7 +324,7 @@ Payment          ↓
              Payment Result
                   ↓
            Success / Failed
-
+```
 
 
 
@@ -340,7 +341,7 @@ Thu thập đánh giá chất lượng dịch vụ.
 Business Requirement:
 Khách hàng được phép đánh giá chuyến xe sau khi chuyến hoàn thành.
 Business Rule:
-
+```
 Trip Completed
       ↓
 Customer can Rate
@@ -348,7 +349,7 @@ Customer can Rate
 Submit Rating
       ↓
 Store Rating
-
+```
 
 
 
@@ -375,7 +376,7 @@ Báo cáo phải phản ánh dữ liệu hoạt động của hệ thống.
 6. Chức năng nghiệp vụ — FR
 Module Customer Management
 Quy trình nghiệp vụ
-
+```
 Khách hàng
     ↓
 Đăng ký / Đăng nhập
@@ -389,6 +390,8 @@ Theo dõi chuyến
 Thanh toán
     ↓
 Đánh giá
+```
+
 
 
 Functional Requirements
