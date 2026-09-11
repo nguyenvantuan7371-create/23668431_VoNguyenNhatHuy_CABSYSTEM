@@ -115,43 +115,46 @@ Payment Management
 
 4. Module
 CAB SYSTEM
+
+
 │
 ├── 1. Customer Management
-│   ├── Registration / Login
-│   ├── Profile Management
-│   ├── Booking
-│   ├── Trip Tracking
-│   └── Rating
+│   ├── 🔑 Registration / Login
+│   ├── 👤 Profile Management
+│   ├── 📅 Booking
+│   ├── 📍 Trip Tracking
+│   └── ⭐ Rating
 │
 ├── 2. Driver Management
-│   ├── Driver Profile
-│   ├── Vehicle Management
-│   ├── Driver Availability
-│   ├── Driver Location
-│   ├── Ride Acceptance
-│   └── Trip Progress
+│   ├── 👤 Driver Profile
+│   ├── 🚗 Vehicle Management
+│   ├── ⏲️ Driver Availability
+│   ├── 📍 Driver Location
+│   ├── ✅ Ride Acceptance
+│   └── 🚦 Trip Progress
 │
 ├── 3. Booking & Dispatch Management
-│   ├── Create Booking
-│   ├── Find Driver
-│   ├── Driver Assignment
-│   ├── Reassignment
-│   └── Booking Status
+│   ├── ➕ Create Booking
+│   ├── 🔍 Find Driver
+│   ├── 📤 Driver Assignment
+│   ├── 🔄 Reassignment
+│   └── 📊 Booking Status
 │
 ├── 4. Payment Management
-│   ├── Fare Calculation
-│   ├── Cash Payment
-│   ├── Electronic Payment
-│   └── Payment Failure
+│   ├── 🧮 Fare Calculation
+│   ├── 💵 Cash Payment
+│   ├── 💳 Electronic Payment
+│   └── ❌ Payment Failure
 │
 └── 5. Operation & Administration
-    ├── Customer Management
-    ├── Driver Management
-    ├── Vehicle Management
-    ├── Trip Management
-    ├── Incident Management
-    ├── Permission Management
-    └── Reporting
+    ├── 👥 Customer Management
+    ├── 👤 Driver Management
+    ├── 🚗 Vehicle Management
+    ├── 🗺️ Trip Management
+    ├── ⚠️ Incident Management
+    ├── 🔒 Permission Management
+    └── 📑 Reporting
+
 
 
 5. Thiết kế Business Requirement
