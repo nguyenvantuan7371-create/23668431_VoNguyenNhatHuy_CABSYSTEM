@@ -664,7 +664,7 @@ erDiagram
         int Score
         string Comment
     }
-
+```
 
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
 
