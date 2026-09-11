@@ -557,6 +557,25 @@ UC06: Cập nhật trạng thái hoạt động (Sẵn sàng / Bận).
 UC07: Xử lý yêu cầu chuyến (Chấp nhận / Từ chối).
 UC08: Cập nhật tiến trình chuyến đi (Đến điểm đón, Đã đón khách, Đang di chuyển, Hoàn thành).  
 ## 10. Tiêu chí chấp nhận (Acceptance Criteria - AC)
+
+### AC cho UC02 – Đặt xe
+
+* Hệ thống không cho phép khách hàng gửi yêu cầu nếu để trống **"Điểm đón"** hoặc **"Điểm đến"**.
+* Hệ thống phải hiển thị rõ các loại xe (VD: **4 chỗ, 7 chỗ, xe máy**) để khách hàng chọn.
+
+### AC cho UC10 – Phân công tự động
+
+* Khi khách hàng tạo chuyến, hệ thống chỉ gửi yêu cầu cho tài xế có trạng thái **"Sẵn sàng" (Available)**.
+* Nếu tài xế đầu tiên nhấn **"Từ chối"**, hệ thống phải tự động tiếp tục tìm tài xế khác phù hợp mà không yêu cầu khách hàng tạo lại yêu cầu đặt xe.
+* Trong trường hợp hệ thống không tìm được bất kỳ tài xế nào, khách hàng phải được nhận **thông báo rõ ràng**.
+
+### AC cho UC04 – Thanh toán điện tử
+
+* Hệ thống bắt buộc phải gửi **request** sang Cổng thanh toán bên ngoài (**Payment Provider**).
+* Hệ thống **không được lưu giữ** thông tin thẻ tín dụng/tài khoản ngân hàng của khách hàng trong Database của hệ thống CAB.
+* Nếu thanh toán điện tử thất bại, hệ thống phải **hiển thị thông báo lỗi** cho khách hàng.
+* Hệ thống phải cho phép khách hàng **thực hiện thanh toán lại**.
+ 
 ## 11. Bảng truy vết (Traceability Matrix)
 
 
