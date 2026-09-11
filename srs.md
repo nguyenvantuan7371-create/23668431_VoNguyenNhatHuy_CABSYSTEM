@@ -4,7 +4,7 @@
 
 
 ## 1. Xác định Stakeholder
-```
+
 | Stakeholder                     | Role                    | Responsibilities & Concerns                                                                                                                  |
 | ------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Ban lãnh đạo (Ban giám đốc)** | Sponsor / Project Owner | Kỳ vọng xây dựng nền tảng CAB mới phục vụ số lượng lớn người dùng. Cần báo cáo về doanh thu, tỷ lệ hoàn thành/hủy chuyến và hiệu quả tài xế. |
@@ -14,7 +14,7 @@
 | **Nhà cung cấp thanh toán**     | External System         | Tích hợp và xử lý các giao dịch thanh toán điện tử.                                                                                          |
 | **Business Analyst**            | Project Team            | Xác định phạm vi, quy trình, yêu cầu và làm rõ các quy tắc nghiệp vụ như tính cước, tiêu chí ưu tiên và thời gian phản hồi.                  |
 | **Nhóm phát triển (Dev Team)**  | Project Team            | Xây dựng hệ thống ổn định, có khả năng mở rộng độc lập từng thành phần khi tải hệ thống tăng.                                                |
-```
+
 
 
 ## 2. Stakeholder Matrix:
