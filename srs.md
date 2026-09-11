@@ -45,25 +45,20 @@ Hệ thống phục vụ ba nhóm người dùng chính:
 - Doanh nghiệp có thể phối hợp nội bộ và theo dõi hoạt động qua hệ thống.
 - Business Analyst xác định rõ phạm vi, tác nhân, quy trình, yêu cầu chức năng/phi chức năng, quy tắc nghiệp vụ, ngoại lệ và các điểm chưa rõ để xác nhận với khách hàng.
 
+## Stakeholder Analysis
+```
+| Stakeholder                     | Role                    | Responsibilities & Concerns                                                                                                                  |
+| ------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ban lãnh đạo (Ban giám đốc)** | Sponsor / Project Owner | Kỳ vọng xây dựng nền tảng CAB mới phục vụ số lượng lớn người dùng. Cần báo cáo về doanh thu, tỷ lệ hoàn thành/hủy chuyến và hiệu quả tài xế. |
+| **Khách hàng**                  | End-User                | Đăng ký, đặt xe, chọn loại xe, theo dõi chuyến đi, xem số tiền phải trả và đánh giá chuyến đi.                                               |
+| **Tài xế**                      | End-User                | Đăng ký hồ sơ, cập nhật trạng thái sẵn sàng, nhận thông báo, chấp nhận/từ chối chuyến và cập nhật trạng thái chuyến đi.                      |
+| **Nhân viên vận hành**          | Admin                   | Quản lý khách hàng, tài xế, phương tiện; hỗ trợ xử lý lỗi và tra cứu lịch sử giao dịch.                                                      |
+| **Nhà cung cấp thanh toán**     | External System         | Tích hợp và xử lý các giao dịch thanh toán điện tử.                                                                                          |
+| **Business Analyst**            | Project Team            | Xác định phạm vi, quy trình, yêu cầu và làm rõ các quy tắc nghiệp vụ như tính cước, tiêu chí ưu tiên và thời gian phản hồi.                  |
+| **Nhóm phát triển (Dev Team)**  | Project Team            | Xây dựng hệ thống ổn định, có khả năng mở rộng độc lập từng thành phần khi tải hệ thống tăng.                                                |
+```
 
-```
-Stakeholder	Role	Responsibilities & Concerns
-Ban lãnh đạo (Ban giám đốc)	Sponsor / Project Owner	Kỳ vọng xây dựng nền tảng CAB mới phục vụ số lượng lớn người dùng. Cần báo cáo về doanh thu, tỷ lệ hoàn thành/hủy chuyến và hiệu quả tài xế.
-Khách hàng	End-User	Đăng ký, đặt xe, chọn loại xe, theo dõi chuyến đi, xem số tiền phải trả và đánh giá chuyến đi.
-Tài xế	End-User	Đăng ký hồ sơ, cập nhật trạng thái sẵn sàng, nhận thông báo, chấp nhận/từ chối chuyến và cập nhật trạng thái chuyến đi.
-Nhân viên vận hành	Admin	Quản lý khách hàng, tài xế, phương tiện; hỗ trợ xử lý lỗi và tra cứu lịch sử giao dịch.
-Nhà cung cấp thanh toán	External System	Tích hợp và xử lý các giao dịch thanh toán điện tử.
-Business Analyst	Project Team	Xác định phạm vi, quy trình, yêu cầu và làm rõ các quy tắc nghiệp vụ như tính cước, tiêu chí ưu tiên và thời gian phản hồi.
-Nhóm phát triển (Dev Team)	Project Team	Xây dựng hệ thống ổn định, có khả năng mở rộng độc lập từng thành phần khi tải hệ thống tăng.
-```
-Tên Stakeholder	                 Vai trò	                 Trách nhiệm & Mối quan tâm
-Ban lãnh đạo (Ban giám đốc)	     Sponsor / Project Owner	 Kỳ vọng xây dựng nền tảng CAB mới phục vụ số lượng lớn người                                                                          dùng. Cần báo cáo doanh thu, tỷ lệ hoàn thành/hủy chuyến, hiệu                                                                        quả tài xế 
-Khách hàng                       End-User                    Đăng ký, đặt xe, chọn loại xe, theo dõi chuyến đi, xem số tiền phải trả                                                               và đánh giá.
-Tài xế                           End-User                    Đăng ký hồ sơ, cập nhật trạng thái sẵn sàng, nhận thông báo, chấp                                                                     nhận/từ chối chuyến và cập nhật trạng thái chuyến đi
-Nhân viên vận hành               Admin                       Quản lý khách hàng, tài xế, phương tiện, hỗ trợ lỗi và tra cứu lịch sử                                                                giao dịch.
-Nhà cung cấp thanh toán          External System             Tích hợp xử lý giao dịch thanh toán điện tử.
-Business Analyst                 Project Team                Xác định phạm vi, quy trình, yêu cầu và làm rõ các quy tắc nghiệp vụ                                                                  (tính cước, tiêu chí ưu tiên, thời gian phản hồi).
-Nhóm phát triển (Dev Team)       Project Team                Xây dựng hệ thống ổn định, có khả năng mở rộng độc lập từng thành phần                                                                khi tải tăng.
+
 2. Stakeholder Matrix:
 ```mermaid
 quadrantChart
