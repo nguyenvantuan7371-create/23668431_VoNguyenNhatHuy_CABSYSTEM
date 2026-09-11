@@ -545,7 +545,7 @@ Module Operation & Administration
 | **NFR06** | **Kiểm toán (Audit)**                  | Hệ thống phải lưu vết các thao tác quản trị quan trọng để phục vụ kiểm tra khi có sự cố.                                                                                         |
   
 ## 8. Mô hình thực thể kết hợp (ERD Entities)
-Khái quát:
+## Khái quát:
 ## Data Entities
 
 ### 1. Entity: Khách hàng (Customer)
@@ -598,6 +598,12 @@ Khái quát:
 
   * Một chuyến đi có thể có một đánh giá.
   * Một đánh giá chỉ thuộc về một chuyến đi.
+
+
+## Mô hình ERD
+```
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8d4975f0-09c1-45b9-b659-e97a9da6c94d" />
+```
 
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
 
