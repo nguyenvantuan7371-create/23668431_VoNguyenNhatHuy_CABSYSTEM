@@ -544,10 +544,62 @@ Module Operation & Administration
 | **NFR05** | **Bảo mật dữ liệu (Data Privacy)**     | Không lưu trữ trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán trong hệ thống CAB.                                                                                 |
 | **NFR06** | **Kiểm toán (Audit)**                  | Hệ thống phải lưu vết các thao tác quản trị quan trọng để phục vụ kiểm tra khi có sự cố.                                                                                         |
   
-## 8. Mô hình thực thể kết hợp (ERD Entities - Mức khái quát)
+## 8. Mô hình thực thể kết hợp (ERD Entities)
+Khái quát:
+## Data Entities
+
+### 1. Entity: Khách hàng (Customer)
+
+* **Thuộc tính:** `CustomerID` (PK), `FullName`, `PhoneNumber`, `Email`, `PasswordHash`, `Status`.
+
+### 2. Entity: Tài xế (Driver)
+
+* **Thuộc tính:** `DriverID` (PK), `FullName`, `PhoneNumber`, `Email`, `PasswordHash`, `AvailabilityStatus` (Sẵn sàng / Không sẵn sàng), `CurrentLocation` (Tọa độ GPS).
+
+### 3. Entity: Phương tiện (Vehicle)
+
+* **Thuộc tính:** `VehicleID` (PK), `DriverID` (FK), `LicensePlate`, `VehicleType`, `Color`.
+
+### 4. Entity: Chuyến đi / Đặt xe (Trip / Booking)
+
+* **Thuộc tính:** `TripID` (PK), `CustomerID` (FK), `DriverID` (FK), `PickupLocation`, `DropoffLocation`, `VehicleType`, `Status` (Đang tìm / Đã nhận / Đã đón / Hoàn thành), `Fare`, `Distance`.
+
+### 5. Entity: Thanh toán (Payment)
+
+* **Thuộc tính:** `PaymentID` (PK), `TripID` (FK), `Method` (Tiền mặt / Điện tử), `Amount`, `Status` (Thành công / Thất bại).
+
+### 6. Entity: Đánh giá (Rating)
+
+* **Thuộc tính:** `RatingID` (PK), `TripID` (FK), `Score`, `Comment`.
+
+## Relationships
+
+* **Khách hàng (Customer) (1) — (N) Chuyến đi (Trip/Booking)**
+
+  * Một khách hàng có thể thực hiện nhiều chuyến đi.
+  * Mỗi chuyến đi thuộc về một khách hàng.
+
+* **Tài xế (Driver) (1) — (1) Phương tiện (Vehicle)**
+
+  * Một tài xế được gắn với một phương tiện.
+  * Mỗi phương tiện thuộc về một tài xế.
+
+* **Tài xế (Driver) (1) — (N) Chuyến đi (Trip/Booking)**
+
+  * Một tài xế có thể thực hiện nhiều chuyến đi.
+  * Mỗi chuyến đi được thực hiện bởi tối đa một tài xế.
+
+* **Chuyến đi (Trip/Booking) (1) — (1) Thanh toán (Payment)**
+
+  * Mỗi chuyến đi có một bản ghi thanh toán.
+  * Một thanh toán chỉ thuộc về một chuyến đi.
+
+* **Chuyến đi (Trip/Booking) (1) — (1) Đánh giá (Rating)**
+
+  * Một chuyến đi có thể có một đánh giá.
+  * Một đánh giá chỉ thuộc về một chuyến đi.
 
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
-   ## Use Case List
 
 ### 👤 Actor: Khách hàng (Customer)
 
