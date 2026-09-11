@@ -409,6 +409,7 @@ Functional Requirements
 
 Module Driver Management
 Quy trình nghiệp vụ
+```
 Tài xế
   ↓
 Đăng nhập
@@ -424,7 +425,7 @@ Nhận yêu cầu chuyến
 Chấp nhận / Từ chối
   ↓
 Cập nhật tiến trình chuyến
-
+```
 
 Functional Requirements
 | ID       | Functional Requirement | Mô tả                                       |
@@ -442,6 +443,7 @@ Functional Requirements
 
 Module Booking & Dispatch
 Quy trình
+```
 Booking Request
       ↓
 Tìm tài xế phù hợp
@@ -458,7 +460,7 @@ Accept       Reject / Timeout
 Xác nhận      Tìm tài xế khác
 chuyến            │
                   └──→ Gửi yêu cầu lại
-
+```
 
 
 
@@ -478,6 +480,7 @@ Functional Requirements
 
 Module Trip Management
 Quy trình
+```
 Trip Created
      ↓
 Driver Assigned
@@ -489,7 +492,7 @@ Driver Arrived
 Trip In Progress
      ↓
 Trip Completed
-
+```
 
 Functional Requirements
 | ID       | Functional Requirement                    |
@@ -506,6 +509,7 @@ Functional Requirements
 
 Module Payment Management
 Quy trình
+```
 Trip Completed
       ↓
 Tính cước
@@ -520,7 +524,7 @@ Tiền mặt                 Điện tử
 Ghi nhận              Payment Provider
                               ↓
                        Thành công / Thất bại
-
+```
 
 
 Functional Requirements
