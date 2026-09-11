@@ -116,9 +116,7 @@ Payment Management
 4. Module
 
 
-# Module CAB SYSTEM
-
-Module CAB SYSTEM
+```
 │
 ├── 1. Customer Management
 │   ├── 🔑 Registration / Login
@@ -156,7 +154,7 @@ Module CAB SYSTEM
 ├── ⚠️ Incident Management
 ├── 🔒 Permission Management
 └── 📑 Reporting
-
+```
 
 5. Thiết kế Business Requirement
 BR01 – Customer Registration & Account
