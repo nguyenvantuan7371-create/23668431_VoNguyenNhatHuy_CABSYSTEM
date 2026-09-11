@@ -545,17 +545,29 @@ Module Operation & Administration
 | **NFR06** | **Kiểm toán (Audit)**                  | Hệ thống phải lưu vết các thao tác quản trị quan trọng để phục vụ kiểm tra khi có sự cố.                                                                                         |
   
 ## 8. Mô hình thực thể kết hợp (ERD Entities - Mức khái quát)
+
 ## 9. Thiết kế Usecase (Danh sách Usecase cho MVP)
-    Usecase Nhóm Khách hàng (Customer):
-UC01: Đăng ký / Đăng nhập hệ thống.
-UC02: Tạo yêu cầu đặt xe (Nhập điểm đón, đến, loại xe).
-UC03: Theo dõi trạng thái chuyến đi & Vị trí tài xế.
-UC04: Thanh toán chuyến đi (Tiền mặt / Điện tử).
-UC05: Đánh giá dịch vụ.
-    Usecase Nhóm Tài xế (Driver):
-UC06: Cập nhật trạng thái hoạt động (Sẵn sàng / Bận).
-UC07: Xử lý yêu cầu chuyến (Chấp nhận / Từ chối).
-UC08: Cập nhật tiến trình chuyến đi (Đến điểm đón, Đã đón khách, Đang di chuyển, Hoàn thành).  
+   ## Use Case List
+
+### 👤 Actor: Khách hàng (Customer)
+
+* **UC01 - Quản lý tài khoản:** Đăng ký, đăng nhập và cập nhật thông tin cá nhân.
+* **UC02 - Đặt xe:** Nhập điểm đón, điểm đến, chọn loại xe và xác nhận gửi yêu cầu đặt xe.
+* **UC03 - Theo dõi chuyến:** Xem trạng thái tìm tài xế, thông tin tài xế đã nhận chuyến, thời gian dự kiến tài xế đến và trạng thái hiện tại của chuyến đi.
+* **UC04 - Thanh toán:** Xem số tiền phải trả và lựa chọn phương thức thanh toán (**Tiền mặt / Điện tử**).
+* **UC05 - Đánh giá:** Đánh giá tài xế và chuyến đi sau khi chuyến đi hoàn thành.
+
+### 🚗 Actor: Tài xế (Driver)
+
+* **UC06 - Đăng nhập & Hồ sơ:** Đăng nhập, cập nhật hồ sơ cá nhân và thông tin phương tiện.
+* **UC07 - Cập nhật trạng thái làm việc:** Bật hoặc tắt trạng thái **sẵn sàng nhận chuyến (Available)**.
+* **UC08 - Xử lý yêu cầu đặt xe:** Nhận thông báo về chuyến mới và lựa chọn **chấp nhận hoặc từ chối** chuyến.
+* **UC09 - Cập nhật hành trình:** Chuyển đổi trạng thái chuyến đi theo trình tự: **Đã đến điểm đón → Đã đón khách → Đang di chuyển → Hoàn thành chuyến**.
+
+### ⚙️ Actor: Hệ thống (System)
+
+* **UC10 - Phân công tự động (Dispatch):** Xác định vị trí tài xế, tìm tài xế phù hợp và gần nhất đang ở trạng thái **Available**. Tự động tiếp tục tìm tài xế khác khi tài xế được chọn **từ chối hoặc không phản hồi**.
+
 ## 10. Tiêu chí chấp nhận (Acceptance Criteria - AC)
 
 ### AC cho UC02 – Đặt xe
