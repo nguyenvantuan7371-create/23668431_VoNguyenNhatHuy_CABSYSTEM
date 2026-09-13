@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Payment
+    description: Fare calculation and payment
+paths:
+  /rides/{rideId}/fare:
+    post:
+      summary: FR30 - Calculate ride fare
+      operationId: calculateFare
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Fare calculated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FareResponse'
+  /payments/cash:
+    post:
+      summary: FR31 - Cash payment
+      operationId: payCash
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Cash payment recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /payments/electronic:
+    post:
+      summary: FR32 - Electronic payment
+      operationId: electronicPayment
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Electronic payment initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /payments/provider:
+    post:
+      summary: FR33 - Integrate payment provider
+      operationId: sendPaymentToProvider
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderPaymentRequest'
+      responses:
+        '200':
+          description: Payment provider accepted request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderPaymentResponse'
+        '502': {description: Payment provider error}
+  /payments/{paymentId}/result:
+    post:
+      summary: FR34 - Record payment result
+      operationId: recordPaymentResult
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentResultRequest'
+      responses:
+        '200':
+          description: Payment result recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /payments/{paymentId}/retry:
+    post:
+      summary: FR35 - Retry failed payment
+      operationId: retryPayment
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Payment retry initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    FareResponse:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        distance: {type: number, format: double}
+        fare: {type: number, format: double}
+    PaymentRequest:
+      type: object
+      required: [tripId, amount]
+      properties:
+        tripId: {type: integer, format: int64}
+        amount: {type: number, format: double}
+    ProviderPaymentRequest:
+      type: object
+      required: [paymentId, amount]
+      properties:
+        paymentId: {type: integer, format: int64}
+        amount: {type: number, format: double}
+    ProviderPaymentResponse:
+      type: object
+      properties:
+        providerTransactionId: {type: string}
+        status: {type: string, enum: [PENDING, SUCCESS, FAILED]}
+        paymentUrl: {type: string}
+    PaymentResultRequest:
+      type: object
+      required: [providerTransactionId, status]
+      properties:
+        providerTransactionId: {type: string}
+        status: {type: string, enum: [SUCCESS, FAILED]}
+    Payment:
+      type: object
+      properties:
+        paymentId: {type: integer, format: int64}
+        tripId: {type: integer, format: int64}
+        method: {type: string, enum: [CASH, ELECTRONIC]}
+        amount: {type: number, format: double}
+        status: {type: string, enum: [PENDING, SUCCESS, FAILED]}
