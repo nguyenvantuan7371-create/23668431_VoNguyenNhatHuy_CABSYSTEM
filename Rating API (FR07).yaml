@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Rating
+    description: Trip rating
+paths:
+  /rides/{rideId}/rating:
+    post:
+      summary: FR07 - Rate a completed trip
+      operationId: rateRide
+      tags: [Rating]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RatingRequest'
+      responses:
+        '201':
+          description: Rating recorded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Ride is not completed or score is invalid
+        '404':
+          description: Ride not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    RatingRequest:
+      type: object
+      required: [score]
+      properties:
+        score:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+    Rating:
+      type: object
+      properties:
+        ratingId: {type: integer, format: int64}
+        tripId: {type: integer, format: int64}
+        score: {type: integer, minimum: 1, maximum: 5}
+        comment: {type: string}
