@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Trip
+    description: Trip tracking and progress
+paths:
+  /rides/{rideId}/tracking:
+    get:
+      summary: FR05 - Track ride progress
+      operationId: trackRide
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Ride tracking information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RideTracking'
+        '404': {description: Ride not found}
+  /rides/{rideId}/driver:
+    get:
+      summary: FR28 - Get assigned driver information
+      operationId: getRideDriver
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Driver information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+  /rides/{rideId}/status:
+    put:
+      summary: FR26 - Update trip progress
+      operationId: updateRideStatus
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRideStatusRequest'
+      responses:
+        '200':
+          description: Trip status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        '400': {description: Invalid status transition}
+  /rides/{rideId}/complete:
+    post:
+      summary: FR29 - Complete trip
+      operationId: completeRide
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Trip completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Ride:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        status: {type: string}
+        fare: {type: number, format: double}
+    Driver:
+      type: object
+      properties:
+        driverId: {type: integer, format: int64}
+        fullName: {type: string}
+        phoneNumber: {type: string}
+        currentLocation: {type: string}
+    RideTracking:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        status: {type: string}
+        driverLocation: {type: string}
+        estimatedArrivalTime: {type: string}
+    UpdateRideStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [DRIVER_ARRIVING, DRIVER_ARRIVED, TRIP_STARTED, IN_PROGRESS, COMPLETED]
