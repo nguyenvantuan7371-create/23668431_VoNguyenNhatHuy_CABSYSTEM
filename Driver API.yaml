@@ -1,0 +1,191 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Driver
+    description: Driver account and vehicle management
+paths:
+  /drivers/login:
+    post:
+      summary: FR08 - Driver login
+      operationId: loginDriver
+      tags: [Driver]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Invalid credentials
+  /drivers/{driverId}:
+    put:
+      summary: FR09 - Update driver profile
+      operationId: updateDriver
+      tags: [Driver]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDriverRequest'
+      responses:
+        '200':
+          description: Driver profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+        '401': {description: Unauthorized}
+        '404': {description: Driver not found}
+  /drivers/{driverId}/vehicle:
+    put:
+      summary: FR10 - Manage driver vehicle
+      operationId: updateDriverVehicle
+      tags: [Driver]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleRequest'
+      responses:
+        '200':
+          description: Vehicle updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+  /drivers/{driverId}/availability:
+    put:
+      summary: FR11 - Update driver availability
+      operationId: updateDriverAvailability
+      tags: [Driver]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilityRequest'
+      responses:
+        '200':
+          description: Availability updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+  /drivers/{driverId}/ride-requests:
+    get:
+      summary: FR12 - Get ride requests
+      operationId: getDriverRideRequests
+      tags: [Driver]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Ride requests retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ride'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: {type: string, format: email}
+        password: {type: string, format: password}
+    LoginResponse:
+      type: object
+      properties:
+        accessToken: {type: string}
+        driverId: {type: integer, format: int64}
+    Driver:
+      type: object
+      properties:
+        driverId: {type: integer, format: int64}
+        fullName: {type: string}
+        phoneNumber: {type: string}
+        email: {type: string, format: email}
+        availabilityStatus: {type: string, enum: [AVAILABLE, UNAVAILABLE]}
+        currentLocation: {type: string}
+    UpdateDriverRequest:
+      type: object
+      properties:
+        fullName: {type: string}
+        phoneNumber: {type: string}
+        email: {type: string, format: email}
+    Vehicle:
+      type: object
+      properties:
+        vehicleId: {type: integer, format: int64}
+        driverId: {type: integer, format: int64}
+        licensePlate: {type: string}
+        vehicleType: {type: string, enum: [CAR_4_SEAT, CAR_7_SEAT, MOTORBIKE]}
+        color: {type: string}
+    VehicleRequest:
+      type: object
+      required: [licensePlate, vehicleType]
+      properties:
+        licensePlate: {type: string}
+        vehicleType: {type: string, enum: [CAR_4_SEAT, CAR_7_SEAT, MOTORBIKE]}
+        color: {type: string}
+    AvailabilityRequest:
+      type: object
+      required: [availabilityStatus]
+      properties:
+        availabilityStatus: {type: string, enum: [AVAILABLE, UNAVAILABLE]}
+    Ride:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        pickupLocation: {type: string}
+        dropoffLocation: {type: string}
+        vehicleType: {type: string}
+        status: {type: string}
