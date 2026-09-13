@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Booking
+    description: Ride booking and driver response
+paths:
+  /rides:
+    post:
+      summary: FR04 - Create ride booking
+      operationId: createRide
+      tags: [Booking]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRideRequest'
+      responses:
+        '201':
+          description: Booking created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        '400': {description: Invalid booking information}
+        '401': {description: Unauthorized}
+  /rides/{rideId}/accept:
+    post:
+      summary: FR13 - Accept ride request
+      operationId: acceptRide
+      tags: [Booking]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Ride accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        '400': {description: Ride cannot be accepted}
+        '404': {description: Ride not found}
+  /rides/{rideId}/reject:
+    post:
+      summary: FR14 - Reject ride request
+      operationId: rejectRide
+      tags: [Booking]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RejectRideRequest'
+      responses:
+        '200':
+          description: Ride rejected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        '400': {description: Ride cannot be rejected}
+        '404': {description: Ride not found}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    CreateRideRequest:
+      type: object
+      required: [pickupLocation, dropoffLocation, vehicleType]
+      properties:
+        pickupLocation: {type: string}
+        dropoffLocation: {type: string}
+        vehicleType: {type: string, enum: [CAR_4_SEAT, CAR_7_SEAT, MOTORBIKE]}
+    RejectRideRequest:
+      type: object
+      properties:
+        reason: {type: string}
+    Ride:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        customerId: {type: integer, format: int64}
+        driverId: {type: integer, format: int64, nullable: true}
+        pickupLocation: {type: string}
+        dropoffLocation: {type: string}
+        vehicleType: {type: string}
+        status: {type: string}
+        fare: {type: number, format: double}
+        distance: {type: number, format: double}
