@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: CAB System API
+  description: API for CAB System – Nền tảng đặt xe.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+
+tags:
+  - name: Dispatch
+    description: Automatic driver finding, ranking and assignment
+paths:
+  /rides/{rideId}/drivers:
+    get:
+      summary: FR17 - Find available drivers
+      operationId: findAvailableDrivers
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Available drivers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+        '404': {description: No suitable driver found}
+  /rides/{rideId}/drivers/ranking:
+    get:
+      summary: FR18 - Rank suitable drivers
+      operationId: rankDrivers
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Drivers ranked successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverRanking'
+  /rides/{rideId}/dispatch/retry:
+    post:
+      summary: FR21 - Retry dispatch after driver rejection
+      operationId: retryDispatch
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Next driver search started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchResponse'
+  /rides/{rideId}/dispatch/timeout:
+    post:
+      summary: FR22 - Handle driver response timeout
+      operationId: handleDispatchTimeout
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Timeout handled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchResponse'
+  /rides/{rideId}/dispatch/status:
+    get:
+      summary: FR23 - Check no-driver dispatch status
+      operationId: getDispatchStatus
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200':
+          description: Dispatch status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchResponse'
+  /rides/{rideId}/assign-driver:
+    post:
+      summary: FR24 - Assign driver to ride
+      operationId: assignDriver
+      tags: [Dispatch]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rideId
+          in: path
+          required: true
+          schema: {type: integer, format: int64}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDriverRequest'
+      responses:
+        '200':
+          description: Driver assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Driver:
+      type: object
+      properties:
+        driverId: {type: integer, format: int64}
+        fullName: {type: string}
+        availabilityStatus: {type: string, enum: [AVAILABLE, UNAVAILABLE]}
+        currentLocation: {type: string}
+    DriverRanking:
+      type: object
+      properties:
+        driverId: {type: integer, format: int64}
+        distanceToPickup: {type: number, format: double}
+        rank: {type: integer}
+    DispatchResponse:
+      type: object
+      properties:
+        tripId: {type: integer, format: int64}
+        status: {type: string}
+        message: {type: string}
+    AssignDriverRequest:
+      type: object
+      required: [driverId]
+      properties:
+        driverId: {type: integer, format: int64}
