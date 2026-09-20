@@ -1,0 +1,7 @@
+# Test Scenario: Tài xế nhận và hoàn thành chuyến xe
+
+| Test Case ID | Test Scenario | Test Case | Preconditions | Test Steps | Test Data | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `TC-DRV-COM-001` | Tài xế nhận và hoàn thành chuyến xe | Chấp nhận cuốc xe thành công khi có thông báo | Tài xế đang bật trạng thái 'Sẵn sàng/Online' và có một yêu cầu đặt xe được phát tới. | 1. Nhận thông báo cuốc xe mới.<br>2. Bấm 'Chấp nhận' trên màn hình trước khi hết thời gian đếm ngược. | N/A | - Hệ thống gán cuốc xe cho tài xế thành công.<br>- Màn hình chuyển sang chế độ bản đồ dẫn đường tới điểm đón khách. | High |
+| `TC-DRV-COM-002` | Tài xế nhận và hoàn thành chuyến xe | Cập nhật trạng thái "Đã đón khách" thành công | Tài xế đã tới điểm đón và khách hàng đã lên xe. | 1. Trên màn hình chuyến xe, vuốt/bấm nút 'Đã đón khách'. | N/A | - Trạng thái chuyến xe chuyển thành 'Đang di chuyển'.<br>- Ứng dụng cập nhật bản đồ để dẫn đường đến điểm đến của khách hàng. | High |
+| `TC-DRV-COM-003` | Tài xế nhận và hoàn thành chuyến xe | Kết thúc chuyến xe thành công khi tới điểm đến | Tài xế đã chở khách tới đúng điểm đến. Trạng thái chuyến: Đang di chuyển. | 1. Tới vị trí điểm đến.<br>2. Vuốt/bấm nút 'Hoàn thành chuyến'. | N/A | - Chuyến xe kết thúc.<br>- Hiển thị màn hình biên lai/tổng kết cước phí.<br>- Trạng thái tài xế trở về 'Sẵn sàng'. | High |
