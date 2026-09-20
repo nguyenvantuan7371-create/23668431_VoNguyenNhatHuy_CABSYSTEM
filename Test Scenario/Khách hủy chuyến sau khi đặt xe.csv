@@ -1,0 +1,43 @@
+Test Case ID,Test Scenario,Test Case (Lo?i ki?m th?),Preconditions,Test Steps,Test Data,Expected Result,Priority
+TC-CANC-001,H?y chuy?n sau khi ??t,[Positive] H?y chuy?n thành công khi h? th?ng ?ang tìm tài x? (kèm lý do).,Khách hàng v?a ??t xe thành công. Tr?ng thái: SEARCHING,1. M? app ho?c g?i API h?y chuy?n.,booking_id: 12345,H?y thành công (Status 200). Tr?ng thái chuy?n sang CANCELLED. Thông báo h?y thành công và không tính phí.,High
+,,,,,,,
+,,,,2. Nh?p/Truy?n lý do h?y.,"reason: ""Ch? quá lâu""",,
+,,,,,,,
+,,,,3. B?m xác nh?n h?y.,,,
+TC-CANC-002,H?y chuy?n sau khi ??t,[Positive] H?y chuy?n thành công khi ch?a có tài x? (không kèm lý do).,Khách hàng v?a ??t xe thành công. Tr?ng thái: SEARCHING,1. Ch?n h?y chuy?n.,booking_id: 12345,H?y thành công. D? li?u cu?c xe c?p nh?t tr?ng thái CANCELLED.,High
+,,,,,,,
+,,,,2. B? qua lý do (n?u là optional).,reason: (không truy?n),,
+,,,,,,,
+,,,,3. B?m xác nh?n.,,,
+TC-CANC-003,H?y chuy?n sau khi ??t,[Positive] H?y chuy?n ngay khi h? th?ng v?a gán tài x?.,H? th?ng v?a tìm ???c tài x?. Tr?ng thái: ACCEPTED,1. B?m h?y chuy?n.,booking_id: 12345,"H?y thành công. Tr?ng thái: CANCELLED. App tài x? nh?n thông báo ""Khách ?ã h?y cu?c"".",High
+,,,,,,,
+,,,,2. Ch?n lý do.,"reason: ""Thay ??i l?ch trình""",,
+,,,,,,,
+,,,,3. Xác nh?n.,,,
+TC-CANC-004,H?y chuy?n sau khi ??t,[Negative] H?y chuy?n v?i ID cu?c xe không t?n t?i.,Khách hàng ?ã ??ng nh?p.,1. G?i request h?y chuy?n v?i mã ID ?o.,booking_id: 999999,"H? th?ng báo l?i (Status 404 Not Found): ""Không tìm th?y chuy?n ?i"".",Medium
+TC-CANC-005,H?y chuy?n sau khi ??t,[Negative] H?y chuy?n xe c?a ng??i dùng khác (B?o m?t).,User A ?ang ??ng nh?p. User B có cu?c xe 555.,1. User A g?i request h?y chuy?n c?a User B.,token: c?a User A,"H? th?ng ch?n và báo l?i (Status 403 Forbidden): ""B?n không có quy?n h?y chuy?n ?i này"".",High
+,,,,,,,
+,,,,,booking_id: c?a User B,,
+TC-CANC-006,H?y chuy?n sau khi ??t,[Negative] H?y chuy?n khi cu?c xe ?ã b? h?y tr??c ?ó.,Cu?c xe ?ã ? tr?ng thái CANCELLED,1. Th? g?i l?i l?nh h?y chuy?n l?n 2.,booking_id: 12345 (?ã h?y),"H? th?ng báo l?i (Status 400): ""Chuy?n ?i này ?ã ???c h?y tr??c ?ó"".",Medium
+TC-CANC-007,H?y chuy?n sau khi ??t,[Negative] H?y chuy?n khi chuy?n xe ?ã k?t thúc.,Cu?c xe ?ã ? tr?ng thái COMPLETED,1. G?i l?nh h?y chuy?n.,booking_id: 12345 (?ã hoàn thành),"H? th?ng báo l?i: ""Không th? h?y chuy?n ?i ?ã hoàn thành"".",High
+TC-CANC-008,H?y chuy?n sau khi ??t,[Negative] L?i xác th?c do Token h?t h?n.,Phiên ??ng nh?p (Token) c?a khách hàng ?ã h?t h?n.,1. G?i l?nh h?y chuy?n.,booking_id: 12345,"Báo l?i xác th?c (Status 401 Unauthorized): ""Phiên ??ng nh?p h?t h?n"".",High
+,,,,,,,
+,,,,,token: expired,,
+TC-CANC-009,H?y chuy?n sau khi ??t,[Boundary] H?y chuy?n v?i lý do ??t ?? dài t?i ?a cho phép.,Khách hàng v?a ??t xe thành công.,1. G?i l?nh h?y chuy?n.,reason: chu?i ký t? dài ?úng 255 ký t?.,H?y thành công. Database l?u l?i chính xác 255 ký t? lý do h?y.,Low
+,,,,,,,
+,,,,2. Nh?p lý do dài ?úng t?i ?a.,,,
+TC-CANC-010,H?y chuy?n sau khi ??t,[Boundary] H?y chuy?n v?i lý do v??t quá 1 ký t? gi?i h?n.,Khách hàng v?a ??t xe thành công.,1. G?i l?nh h?y chuy?n.,reason: chu?i ký t? dài 256 ký t?.,"H? th?ng ch?n và báo l?i (Status 400): ""Lý do h?y v??t quá s? ký t? cho phép"".",Medium
+,,,,,,,
+,,,,2. Nh?p lý do dài h?n quy ??nh.,,,
+TC-CANC-011,H?y chuy?n sau khi ??t,[Boundary] H?y chuy?n ? giây cu?i cùng c?a th?i gian tìm xe (Timeout).,H? th?ng c?u hình timeout tìm xe là 60s.,1. ??t xe.,booking_id: 12345,Chuy?n ?i ???c tính là do khách h?y thành công tr??c khi h? th?ng t? ??ng h?y do Timeout.,Medium
+,,,,,,,
+,,,,2. B?m h?y chuy?n ? giây 59.9s.,,,
+TC-CANC-012,H?y chuy?n sau khi ??t,[R?ng] Tham s? ID cu?c xe b? b? tr?ng.,Khách hàng ?ã ??ng nh?p.,1. G?i API h?y chuy?n nh?ng không ?ính kèm ID.,booking_id: r?ng / null,"H? th?ng báo l?i (Status 400/404): ""Thi?u thông tin mã chuy?n ?i"".",High
+TC-CANC-013,H?y chuy?n sau khi ??t,[R?ng] B? tr?ng token xác th?c (Header Authorization r?ng).,Khách hàng ch?a ??ng nh?p ho?c API g?i thi?u header.,1. G?i request h?y chuy?n không có Token.,Token: R?ng,"H? th?ng t? ch?i (Status 401): ""Vui lòng ??ng nh?p"".",High
+TC-CANC-014,H?y chuy?n sau khi ??t,[R?ng] Tham s? lý do h?y là chu?i r?ng.,Khách hàng v?a ??t xe thành công.,1. G?i request h?y chuy?n.,"reason: """"","X? lý thành công (n?u không b?t bu?c) HO?C báo l?i ""Vui lòng nh?p lý do"" (n?u b?t bu?c).",Medium
+,,,,,,,
+,,,,2. Truy?n reason là chu?i r?ng.,,,
+TC-CANC-015,H?y chuy?n sau khi ??t,[Sai ??nh d?ng] Mã ID cu?c xe ch?a ký t? ??c bi?t.,Khách hàng ?ã ??ng nh?p.,1. G?i request h?y chuy?n v?i ID ch?a ký t? l?.,booking_id: 123@#$,"Báo l?i ??nh d?ng (Status 400): ""Mã chuy?n ?i không h?p l?"".",High
+TC-CANC-016,H?y chuy?n sau khi ??t,[Sai ??nh d?ng] Mã ID cu?c xe sai ki?u d? li?u.,Khách hàng ?ã ??ng nh?p.,1. G?i l?nh h?y chuy?n v?i ID là Text thay vì Number/UUID.,booking_id: abc_trip,"Báo l?i d? li?u ??u vào (Status 400): ""Sai ki?u d? li?u"".",High
+TC-CANC-017,H?y chuy?n sau khi ??t,[Sai ??nh d?ng] Tr??ng lý do sai ki?u d? li?u.,Khách hàng v?a ??t xe thành công.,1. Truy?n tham s? lý do d??i d?ng m?ng (Array/List) thay vì String.,"reason: [""??i lâu""]",API báo l?i (Status 400 Bad Request) do sai Schema validation.,Medium
+TC-CANC-018,H?y chuy?n sau khi ??t,[Sai ??nh d?ng] C?u trúc JSON b? l?i (Malformed JSON).,Khách hàng v?a ??t xe thành công.,1. B?n Payload JSON b? thi?u d?u ?óng ngo?c.,"Body: {""reason"": ""B?n vi?c"" (Thi?u })","Báo l?i 400 Bad Request: ""Cú pháp JSON không h?p l?"".",Medium
